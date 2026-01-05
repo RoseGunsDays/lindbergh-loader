@@ -1640,7 +1640,7 @@ struct tm *localtime_r(const time_t *timep, struct tm *result)
 {
     struct tm *(*_gmtime_r)(const time_t *, struct tm *) = (struct tm * (*)(const time_t *, struct tm *)) dlsym(RTLD_NEXT, "gmtime_r");
 
-    if ((gId == MJ4_REVG || gId == MJ4_EVO) && getConfig()->mj4EnabledAtT == 1)
+    if ((gGrp == GROUP_MJ4) && getConfig()->mj4EnabledAtT == 1)
     {
         time_t target_time = 1735286445;
         struct tm *res = _gmtime_r(&target_time, result);

@@ -94,7 +94,9 @@ uint32_t cleanElfCRC32[] = {
     0xB0A96E34, // DVP-0043  | vf5
     0xF99E5635, // DVP-0044  | drive.elf
     0x4143F6B4, // DVP-0048A | main.exe
-    0x65489691, // DVP-0049  | mj4
+    0x93210094, // DVP-0049A | mj4
+    0x561DC942, // DVP-0049F | mj4
+    0x65489691, // DVP-0049G | mj4
     0x653BC83B, // DVP-0057  | a.elf
     0x04D88552, // DVP-0057B | a.elf
     0x089D6051, // DVP-0060  | dsr

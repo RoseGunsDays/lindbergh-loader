@@ -1774,6 +1774,94 @@ int initPatch()
             }
         }
         break;
+        case MJ4_REVA:
+        {
+            setVariable(0x0a250914, 2);
+            setVariable(0x0a250910, 2);
+            setVariable(0x0a25090c, 2);
+            setVariable(0x0a250908, 2);
+            setVariable(0x0a250900, 2);
+            setVariable(0x0a2508fc, 2);
+
+            // Security
+            detourFunction(0x085c9d64, amDongleInit);
+            detourFunction(0x085c881d, amDongleIsAvailable);
+            detourFunction(0x085c883a, amDongleIsDevelop);
+            detourFunction(0x085c9213, amDongleUpdate);
+
+            // Fixes and patches to bypss network check
+            amDipswContextAddr = (void *)0x0a27a81c; // Address of amDipswContext
+            detourFunction(0x085c85b0, amDipswInit);
+            detourFunction(0x085c8634, amDipswExit);
+            detourFunction(0x085c86a9, amDipswGetData);
+            detourFunction(0x085c8720, amDipswSetLed);
+
+            detourFunction(0x080e209c, stubRetZero); // skip checks
+            detourFunction(0x080ed218, stubRetZero);
+            patchMemoryFromString(0x080e8e81, "75");
+            patchMemoryFromString(0x0887ce98, "00");
+            patchMemoryFromString(0x080e8e93, "909090909090"); // test skip countdown
+
+            patchMemoryFromString(0x085e43ad, "2e2f72616d2f746f2e74787400");     // Patch /home/disk2 folder
+            patchMemoryFromString(0x085e43c4, "2e2f72616d2f66726f6d2e74787400"); // Patch /home/disk2 folder
+            patchMemoryFromString(0x085e43dd, "2e2f72616d2f2e746d7000");         // Patch /home/disk2 folder
+            patchMemoryFromString(0x085e442d, "2e2f72616d00");                   // Patch /home/disk2 folder
+            patchMemoryFromString(0x085e443d, "2e2f666f6f3100");                 // Patch /home/disk2 folder
+            patchMemoryFromString(0x085e444e, "2e2f666f6f3200");                 // Patch /home/disk2 folder
+            patchMemoryFromString(0x085e7b03, "2e2f72616d2f746d7000");           // Patch /home/disk2 folder
+            patchMemoryFromString(0x085eb1c7, "2e2f00");                         // Patch /home/disk2 folder
+
+            // Mesa Patches
+            if (GPUVendor != NVIDIA_GPU)
+            {
+                detourFunction(0x08050b44, gl_ProgramStringARB);
+            }
+        }
+        break;
+        case MJ4_REVF:
+        {
+            setVariable(0x0a2d3654, 2);
+            setVariable(0x0a2d3650, 2);
+            setVariable(0x0a2d364c, 2);
+            setVariable(0x0a2d3648, 2);
+            setVariable(0x0a2d3640, 2);
+            setVariable(0x0a2d363c, 2);
+
+            // Security
+            detourFunction(0x0860533a, amDongleInit);
+            detourFunction(0x08603df5, amDongleIsAvailable);
+            detourFunction(0x08603e12, amDongleIsDevelop);
+            detourFunction(0x086047eb, amDongleUpdate);
+
+            // Fixes and patches to bypss network check
+            amDipswContextAddr = (void *)0x0a2fd57c; // Address of amDipswContext
+            detourFunction(0x08603b88, amDipswInit);
+            detourFunction(0x08603c0c, amDipswExit);
+            detourFunction(0x08603c81, amDipswGetData);
+            detourFunction(0x08603cf7, amDipswSetLed);
+
+            detourFunction(0x080e24fc, stubRetZero); // skip checks
+            detourFunction(0x080ed74c, stubRetZero);
+            patchMemoryFromString(0x080e9339, "75");
+            patchMemoryFromString(0x088d2f38, "00");
+            patchMemoryFromString(0x080e934b, "909090909090"); // test skip countdown
+
+            patchMemoryFromString(0x0862036d, "2e2f72616d2f746f2e74787400");     // Patch /home/disk2 folder
+            patchMemoryFromString(0x08620384, "2e2f72616d2f66726f6d2e74787400"); // Patch /home/disk2 folder
+            patchMemoryFromString(0x0862039d, "2e2f72616d2f2e746d7000");         // Patch /home/disk2 folder
+            patchMemoryFromString(0x086203ed, "2e2f72616d00");                   // Patch /home/disk2 folder
+            patchMemoryFromString(0x086203fd, "2e2f666f6f3100");                 // Patch /home/disk2 folder
+            patchMemoryFromString(0x0862040e, "2e2f666f6f3200");                 // Patch /home/disk2 folder
+            patchMemoryFromString(0x08623ae3, "2e2f72616d2f746d7000");           // Patch /home/disk2 folder
+            patchMemoryFromString(0x086275b3, "2e2f00");                         // Patch /home/disk2 folder
+
+            // Mesa Patches
+            if (GPUVendor != NVIDIA_GPU)
+            {
+                detourFunction(0x08050d50, gl_ProgramStringARB);
+            }
+        }
+        break;
         case MJ4_REVG:
         {
             setVariable(0x0acf85d4, 2);

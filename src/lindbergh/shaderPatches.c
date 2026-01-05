@@ -564,7 +564,7 @@ void gl_ProgramStringARB(int target, int program_fmt, int program_len, char *pro
         program = newProgram;
         program_len = newProgramLen;
     }
-    else if (gId == MJ4_REVG || gId == MJ4_EVO)
+    else if (gGrp == GROUP_MJ4)
     {
         if (target == GL_VERTEX_PROGRAM_ARB)
         {

@@ -2438,6 +2438,13 @@ int initResolutionPatches()
             setVariable(addressC + 0x8, (size_t)newWidthSPtrLGJ);
         }
         break;
+        case MJ4_REVA:
+        {
+            patchMemoryFromString(0x080520b1, "01");         // Enable Anti Alias
+            patchMemoryFromString(0x080520aa, "03");         // Force 1024x768
+            patchMemoryFromString(0x080531fa, "b803000000"); // Skips resolution set by the Dip Switches.
+        }
+        break;
         case MJ4_REVG:
         {
             patchMemoryFromString(0x080524a1, "01");         // Enable Anti Alias
