@@ -156,3 +156,4 @@ void blitStretch()
         glBindFramebuffer(GL_FRAMEBUFFER, 0);
     }
 }
+

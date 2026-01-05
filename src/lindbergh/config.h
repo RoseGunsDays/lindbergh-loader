@@ -342,3 +342,4 @@ const char *getLindberghColourString(Colour lindberghColour);
 const char *getGameRegionString(GameRegion region);
 const char *getGpuTypeString(GpuType gpuType);
 extern SDL_Keycode getSDLKeycode(const char *input);
+
